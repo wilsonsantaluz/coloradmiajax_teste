@@ -6,27 +6,35 @@ Author: paulo cezar luz
 */
 var  tabelamedicos;
 var dadosconsulta = [];
-var dadosmedico=null;
+
 
 function GetMedicosCodigo(codigo) { //função para carregar os dados medico usando xhr    
 
     //nessa função não precisa de validar limite de caracteres
 
+   
     var xmlhttp = new XMLHttpRequest(); //xhr
     xmlhttp.timeout = 10000;
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
             if (this.status == 200) {
-                dadosmedico= null;
-                dadosmedico = JSON.parse(this.responseText);
-                if (typeof dadosmedico[0] == "undefined") {
+                myObj= null;
+                myObj = JSON.parse(this.responseText);
+                if (typeof myObj[0] == "undefined") {
                     beep();
                     swal({  //verificar se os dados não foram encontrados, depois de ter inserido
                         type: 'error',
                         title: 'ERRO',
                         text: 'DADOS NÃO ENCONTRADOS',
                     });
-                } ;
+                } else {
+                   //ENCHER O MODAL COM OS DADOS DO RESULTADO
+				   document.getElementById("cdCtr").value =myObj[0].cdCtr;
+                   document.getElementById("nmMedico").value =myObj[0].nmMedico;
+   
+                   
+                }
+
             } else {
                 var sstatus = this.status + ' - Erro não tratado'; //verificando se o servidor está offline
                 switch (this.status) {
@@ -285,16 +293,17 @@ var handleDataTableCombinationSetting = function() {
 };
 function  editarmedico(codigo){
    GetMedicosCodigo(codigo);
-   document.getElementById("cdCtr").value =dadosmedico[0].cdCtr;
-   document.getElementById("nmMedico").value =dadosmedico[0].nmMedico;
-   $("#modalconsulta").modal();
+    $("#modalconsulta").modal();
+  
+   
+  
    
 
 }
 
 
 
-function cadastrar() { //função para postar o codigo de barras
+function cadastrarMedico() { //função para postar o codigo de barras
      //CARREGAR AS VARIAVEIS DIGITADAS
     var cdCtr = document.getElementById("cdCtr").value; 
     var cdEmp = 1; 
