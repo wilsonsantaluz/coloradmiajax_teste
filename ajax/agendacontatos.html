@@ -1,0 +1,339 @@
+
+<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+<link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="assets/plugins/DataTables/extensions/Buttons/css/buttons.bootstrap.min.css" rel="stylesheet" />
+<link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<link href="assets/plugins/DataTables/extensions/AutoFill/css/autoFill.bootstrap.min.css" rel="stylesheet" />
+<link href="assets/plugins/DataTables/extensions/ColReorder/css/colReorder.bootstrap.min.css" rel="stylesheet" />
+<link href="assets/plugins/DataTables/extensions/KeyTable/css/keyTable.bootstrap.min.css" rel="stylesheet" />
+<link href="assets/plugins/DataTables/extensions/RowReorder/css/rowReorder.bootstrap.min.css" rel="stylesheet" />
+<link href="assets/plugins/DataTables/extensions/Select/css/select.bootstrap.min.css" rel="stylesheet" />
+<!-- ================== END PAGE LEVEL STYLE ================== -->
+
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  --background-color: inherit;
+    float: left;
+    --border: none;
+    
+    border: 2px solid #ffffff;;
+    border-radius: 5px;
+    
+    color:#ffffff;
+    --color:#333300;
+    --text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+    --text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+ 
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+}
+
+/* Fade in tabs */
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+</style>
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb pull-right">
+        <li><a href="javascript:;">Home</a></li>
+       
+        <li class="active">Agenda de medicos</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">Agenda de medicos <small></small></h1>
+    <!-- end page-header -->
+    
+    <!-- begin row -->
+    <div class="row">
+     <!-- begin col-2 -->
+    
+        <!-- end col-2 -->
+        <!-- begin col-10 -->
+        <div class="col-md-10">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">Agenda de medicos</h4>
+                </div>
+				<div class="col-xs-12 col-sm-12 col-lg-12 well">
+				   <div class="col-xs-12 col-sm-4 col-lg-4 well">
+				      <label for="txtprod">Nome do medico:</label> 
+				      <div class="input-group defaltspan">
+				           
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-lock"></i>
+                            </span>
+                            
+							<input id="txtprod" type="text" class="form-control" name="txtmedico"  placeholder="Digite um nome">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" onclick="loadcode();">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                      </div>
+					</div>  
+				</div>
+				<div class="tab">
+				  
+				  <button class="tablinks" style="background-color: #4286f4;"  onclick="LoadMedicos(event, 'A')">A</button>
+				  <button class="tablinks" style="background-color: #d6f710;" onclick="LoadMedicos(event, 'B')">B</button>
+				  <button class="tablinks" style="background-color: #8ed092;" onclick="LoadMedicos(event, 'C')">C</button>
+				  <button class="tablinks" style="background-color: #f24821;" onclick="LoadMedicos(event, 'D')">D</button>
+				  <button class="tablinks" style="background-color: #160cd6;" onclick="LoadMedicos(event, 'E')">E</button>
+				  <button class="tablinks" style="background-color: #ffec1e;" onclick="LoadMedicos(event, 'F')">F</button>
+				  <button class="tablinks" style="background-color: #ff291e;" onclick="LoadMedicos(event, 'G')">G</button>
+				  <button class="tablinks" style="background-color: #ff8000;" onclick="LoadMedicos(event, 'H')">H</button>
+				  <button class="tablinks" style="background-color: #ffbf00;" onclick="LoadMedicos(event, 'I')">I</button>
+				  <button class="tablinks" style="background-color: #009933;" onclick="LoadMedicos(event, 'J')">J</button>
+				  <button class="tablinks" style="background-color: #993366;" onclick="LoadMedicos(event, 'L')">L</button>
+				  <button class="tablinks" style="background-color: #0000b3;" onclick="LoadMedicos(event, 'M')">M</button>
+				  <button class="tablinks" style="background-color: #40ff00;" onclick="LoadMedicos(event, 'N')">N</button>
+				  <button class="tablinks" style="background-color: #990000;" onclick="LoadMedicos(event, 'O')">O</button>
+				  <button class="tablinks" style="background-color: #00ffbf;" onclick="LoadMedicos(event, 'P')">P</button>
+				  <button class="tablinks" style="background-color: #00bfff;" onclick="LoadMedicos(event, 'Q')">Q</button>
+				  <button class="tablinks" style="background-color: #0080ff;" onclick="LoadMedicos(event, 'R')">R</button>
+				  <button class="tablinks" style="background-color: #0040ff;" onclick="LoadMedicos(event, 'S')">S</button>
+				  <button class="tablinks" style="background-color: #0000ff;" onclick="LoadMedicos(event, 'U')">U</button>
+				  <button class="tablinks" style="background-color: #8000ff;" onclick="LoadMedicos(event, 'V')">V</button>
+				  <button class="tablinks" style="background-color: #bf00ff;" onclick="LoadMedicos(event, 'X')">X</button>
+				  <button class="tablinks" style="background-color: #ff00ff;" onclick="LoadMedicos(event, 'Y')">Y</button>
+				  <button class="tablinks" style="background-color: #ff00bf;" onclick="LoadMedicos(event, 'W')">W</button>
+				  <button class="tablinks" style="background-color: #ff0040;" onclick="LoadMedicos(event, 'Z')">Z</button>
+				</div>
+
+				<div id="tabinicial" class="tabcontent">
+				  <h3>Agenda de medicos</h3>
+				  <p>Benvindo a agenda de medicos 1.0".</p>
+				</div>
+
+				<div id="tabconsulta" class="tabcontent">
+				  <h3>Agenda</h3>
+				  <p id="ptitulotab" >Medicos Iniciando com </p>  
+				   
+					<div class="panel-body">
+					   <table id="data-table" class="table table-striped table-bordered">	   
+					  
+					   </table>
+					</div>
+				</div>
+	       </div>
+        </div>
+        <!-- end col-10 -->
+    </div>
+    <!-- end row -->
+</div>
+<!-- end #content -->	
+
+<!-- MODAL BOOTSTRAP 3 -->
+<div class="modal fade" id="modalconsulta" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3 class="modal-title glyphicon glyphicon-barcode">ag/h3>
+			</div>
+			<div id="panel" class="panel-default">
+				<div id="panelcorpo" class="panel-body">
+					   <div class="col-xs-12 col-sm-12 col-lg-12">
+                <!-- TAMANHO DO SITE EM OUTROS DISPOSITIVOS -->
+				
+
+                <!-- INTERFACE DO XHR -->
+                <div class="defaltspan">
+                    <form>
+                       <div class="col-xs-12 col-sm-4 col-lg-4"> 
+						  <div class="defaltspan form-group">
+								<label for="cdCtr">Código:</label>
+								<input type="text" id="cdCtr" class="form-control" >
+							</div>
+						  
+						   <div class="defaltspan form-group" >
+								<label for="nmMedico">Medico:</label>
+								<input type="text" id="nmMedico" class="form-control">
+							</div>							
+						
+						
+							<div class="defaltspan form-group">
+								<label for="naoEnviaWms">Especialidade</label>								
+								<select class="form-control" id="naoEnviaWms">
+									<option value=0> Não</option>
+									<option value=1> Sim</option>									
+								</select>
+																
+							</div>
+					   </div>
+					   <div class="col-xs-12 col-sm-4 col-lg-4"> 	
+							 
+						
+                			<div class="defaltspan form-group">
+								<label for="eanCaixaFechada">Caixa Fechada ?:</label> 
+								
+								<select class="form-control" id="eanCaixaFechada">
+									<option value=0> Não</option>
+									<option value=1> Sim</option>									
+								</select>
+
+							</div>
+							<div class="defaltspan form-group">
+								<label for="FLAG_PRE_VENCIDOS">Pre Vencido ?:</label> 
+								
+								<select class="form-control" id="FLAG_PRE_VENCIDOS">
+									<option value=0>  Não</option>
+									<option value=1>  Sim</option>									
+								</select>
+							</div>
+					   </div>
+					   <div class="col-xs-12 col-sm-4 col-lg-4">   
+							<div class="defaltspan form-group">
+							   <label for="naoExportar">Exportar ?:</label>                            
+							   
+							   <select class="form-control" id="naoExportar">
+									<option value=0> Não</option>
+									<option value=1> Sim</option>									
+								</select>
+
+							   
+							</div>
+							<div class="defaltspan form-group">
+								 <label for="naoUsarPedEletr">Usar Ped Eletronico ?:</label>  
+								
+								<select class="form-control" id="naoUsarPedEletr">
+									<option value=0> Não</option>
+									<option value=1> Sim</option>									
+								</select>
+								
+							</div>
+							
+							<div class="defaltspan form-group">
+								<label for="tpCdBarra">Tipo cod barra:</label>     
+								<input type="text" id="tpCdBarra" class="form-control" >
+							</div>
+						</div>	
+                        
+                    </form>
+                </div>
+              </div>
+				</div>
+			</div>
+			<div class="modal-footer">
+			    <div align="center" class="well">
+				<button type="button" class="btn btn-success" onclick="cadastrarcodigobarra()"  >Salvar</button> 
+				
+				<button type="button" class="btn btn-default"  data-dismiss="modal">Fechar</button>
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>
+	
+		
+
+<script>
+function LoadMedicos(evt,letra) {
+   
+    tabcontent = document.getElementById("tabinicial");
+    tabcontent.style.display = "none";
+   
+    tablinks = document.getElementById("tablinks");
+	document.getElementById('tabconsulta').style.display = "block";
+    
+    document.getElementById('ptitulotab').innerText ="Medicos iniciando com "+letra;
+    evt.currentTarget.className += " active";
+	GetMedicos(letra)
+}
+</script>
+
+
+     
+</body>
+
+<script>
+    App.restartGlobalFunction();
+    App.setPageTitle('Paulo Cezar | Agenda contatos ');
+   
+	$.getScript('assets/plugins/DataTables/media/js/jquery.dataTables.js').done(function() {
+        $.getScript('assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js').done(function() {
+            $.getScript('assets/plugins/DataTables/extensions/Buttons/js/dataTables.buttons.min.js').done(function() {
+                $.getScript('assets/plugins/DataTables/extensions/Buttons/js/buttons.bootstrap.min.js').done(function() {
+                    $.getScript('assets/plugins/DataTables/extensions/Buttons/js/buttons.flash.min.js').done(function() {
+                        $.getScript('assets/plugins/DataTables/extensions/Buttons/js/jszip.min.js').done(function() {
+                            $.getScript('assets/plugins/DataTables/extensions/Buttons/js/pdfmake.min.js').done(function() {
+                                $.getScript('assets/plugins/DataTables/extensions/Buttons/js/vfs_fonts.min.js').done(function() {
+                                    $.getScript('assets/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js').done(function() {
+                                        $.getScript('assets/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js').done(function() {
+                                            $.getScript('assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js').done(function() {
+                                                $.getScript('assets/plugins/DataTables/extensions/AutoFill/js/dataTables.autoFill.min.js').done(function() {
+                                                    $.getScript('assets/plugins/DataTables/extensions/ColReorder/js/dataTables.colReorder.min.js').done(function() {
+                                                        $.getScript('assets/plugins/DataTables/extensions/KeyTable/js/dataTables.keyTable.min.js').done(function() {
+                                                            $.getScript('assets/plugins/DataTables/extensions/RowReorder/js/dataTables.rowReorder.min.js').done(function() {
+                                                                $.getScript('assets/plugins/DataTables/extensions/Select/js/dataTables.select.min.js').done(function() {
+                                                                    $.getScript('assets/js/agendacontatos.js').done(function() {
+                                                                        TableManageCombine.init();
+                                                                    });
+                                                                });
+			                                                });
+			                                            });
+			                                        });
+			                                    });
+			                                });
+			                            });
+			                        });
+			                    });
+			                });
+			            });
+                    });
+                });
+            });
+        });
+    });
+</script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+</html> 
