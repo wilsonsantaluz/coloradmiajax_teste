@@ -6,8 +6,63 @@ Author: paulo cezar luz
 */
 var  tabelamedicos;
 var dadosconsulta = [];
+var dadosmedico=null;
+
+function GetMedicosCodigo(codigo) { //função para carregar os dados medico usando xhr    
+
+    //nessa função não precisa de validar limite de caracteres
+
+    var xmlhttp = new XMLHttpRequest(); //xhr
+    xmlhttp.timeout = 10000;
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                dadosmedico= null;
+                dadosmedico = JSON.parse(this.responseText);
+                if (typeof dadosmedico[0] == "undefined") {
+                    beep();
+                    swal({  //verificar se os dados não foram encontrados, depois de ter inserido
+                        type: 'error',
+                        title: 'ERRO',
+                        text: 'DADOS NÃO ENCONTRADOS',
+                    });
+                } ;
+            } else {
+                var sstatus = this.status + ' - Erro não tratado'; //verificando se o servidor está offline
+                switch (this.status) {
+                    case 0:
+                        sstatus = "Erro na conexão"
+                        break;
+                    case 404:
+                        sstatus = "404 - A URL informada não e válida ou servidor fora do ar"
+                        break;
+                    case 401:
+                        sstatus = "401 - Acesso negado"
+                        break;
+
+                    case 500:
+                        sstatus = "500 - Erro interno provalvemente parâmetro de consulta não informado"
+                        break;
+                }
 
 
+                if (this.status = 0) sstatus = 'Erro na conexão' //se o servidor estiver fora do ar:
+                swal({
+                    type: 'error',
+                    title: 'ERRO',
+                    text: 'Erro ' + sstatus,
+                });
+            }
+
+
+        };
+
+    };
+
+    xmlhttp.open("GET", 'http://177.72.161.135:9180/soa/esb/cupom/glbMedicos?obj={"cdCtr":' + codigo + '}', true);
+    xmlhttp.send();
+    //xhr get method
+}
 
 
 function GetMedicos(nmMedico) { //função para carregar os dados medico usando xhr    
@@ -129,6 +184,9 @@ function validarcodigo(evt) { //validar se o valor inserido é um código
 }
 function cadastrarnovo() {
  $("#modalconsulta").modal();
+ GetMedicosCodigo(codigo);
+ 
+ 
 } 
 
 var handleDataTableCombinationSetting = function() {
@@ -218,14 +276,23 @@ var handleDataTableCombinationSetting = function() {
         });
 		
         $('#data-table tbody').on( 'click', 'button', function () {
-			var data = tabelamedicos.row( $(this).parents('tr') ).data();
-			alert('Selecionado : Produto'+ data[0] +"'Codigo de barras: "+ data[ 1 ] );
-			
-			cadastrarnovo();
+			var data = tabelamedicos.row( $(this).parents('tr') ).data();	
+		    editarmedico(data[0]);
+	
 			
 		} );		
     }
 };
+function  editarmedico(codigo){
+   GetMedicosCodigo(codigo);
+   document.getElementById("cdCtr").value =dadosmedico[0].cdCtr;
+   document.getElementById("nmMedico").value =dadosmedico[0].nmMedico;
+   $("#modalconsulta").modal();
+   
+
+}
+
+
 
 function cadastrar() { //função para postar o codigo de barras
      //CARREGAR AS VARIAVEIS DIGITADAS
