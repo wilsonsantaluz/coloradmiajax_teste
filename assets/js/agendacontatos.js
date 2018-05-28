@@ -187,9 +187,7 @@ function atualizarMedicoServer() {
   }
 
   var select = document.getElementById('cdEspecialidade');
-  if (select.value != 0) {
-    return true;
-  } else {
+  if (select.value == 0) {
     swal({
       type: 'error',
       title: 'ERRO',
@@ -198,9 +196,7 @@ function atualizarMedicoServer() {
   }
 
   var select2 = document.getElementById('ufDoc');
-  if (select.value != 0) {
-    return true;
-  } else {
+  if (select2.value == 0) {
     swal({
       type: 'error',
       title: 'ERRO',
