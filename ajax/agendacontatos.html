@@ -1,4 +1,3 @@
-
 <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
 <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 <link href="assets/plugins/DataTables/extensions/Buttons/css/buttons.bootstrap.min.css" rel="stylesheet" />
@@ -9,254 +8,252 @@
 <link href="assets/plugins/DataTables/extensions/RowReorder/css/rowReorder.bootstrap.min.css" rel="stylesheet" />
 <link href="assets/plugins/DataTables/extensions/Select/css/select.bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="assets/plugins/sweetalert/sweetalert2.min.css" />
-
-
 <!-- ================== END PAGE LEVEL STYLE ================== -->
 
 <style>
+  /* ESTILO PARA A ABA */
 
+  .tab {
+    background-color: #fff;
+  }
 
-/* STILO PARA A ABA */
-.tab {
-    --overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-}
-/* BOTOES DA AGENDA */
-.tab button { 
+  /* BOTOES DA AGENDA */
+
+  .tab button {
     float: left;
-    border: 2px solid #ffffff;;
-    border-radius: 5px;    
-    color:#ffffff;  
-    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-             0px 8px 13px rgba(0,0,0,0.1),
-             0px 18px 23px rgba(0,0,0,0.1);
-    outline: none;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    background: #00acac;
+    color: #fff;
+    outline: inherit;
     cursor: pointer;
     padding: 8px 12px;
     transition: 0.3s;
     font-size: 14px;
-}
+    height: 50px;
+    width: 50px;
+  }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-    color: #ddd;
-}
+  /* Change background color of buttons on hover */
 
-/* Create an active/current tablink class */
-.tab button.active {
-    color: #ccc;
-}
+  /* Create an active/current tablink class */
 
-/* Style the tab content */
-.tabcontent {
+  .tab button:hover {
+    color: #fff;
+    background: #000;
+  }
+  /* Style the tab content */
+
+  .tabcontent {
     display: none;
     padding: 6px 12px;
     -webkit-animation: fadeEffect 1s;
     animation: fadeEffect 1s;
-}
+  }
 
-/* Fade in tabs */
-@-webkit-keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
+  .well {
+    border: 0px;
+  }
 
-@keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
+  /* Fade in tabs */
+
+  @-webkit-keyframes fadeEffect {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeEffect {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 </style>
 <!-- begin #content -->
 <div id="content" class="content">
-    <!-- begin breadcrumb -->
-    <ol class="breadcrumb pull-right">
-        <li><a href="javascript:;">Home</a></li>
-       
-        <li class="active">Agenda de medicos</li>
-    </ol>
-    <!-- end breadcrumb -->
-    <!-- begin page-header -->
-    <h1 class="page-header">Agenda de medicos <small></small></h1>
-    <!-- end page-header -->
-    
-    <!-- begin row -->
-    <div class="row">
-     <!-- begin col-2 -->
-    
-        <!-- end col-2 -->
-        <!-- begin col-10 -->
-        <div class="col-md-10">
-            <div class="panel panel-inverse">
-                <div class="panel-heading">
-                    <div class="panel-heading-btn">
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-                    </div>
-                    <h4 class="panel-title">Agenda de medicos</h4>
-                </div>
-				<div class="col-xs-12 col-sm-12 col-lg-12 well">
-				   <div class="col-xs-12 col-sm-4 col-lg-4 well">
-				      <label for="txtprod">Nome do medico:</label> 
-				      <div class="input-group defaltspan">
-				           
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-lock"></i>
-                            </span>
-                            
-							<input id="txtmedico" type="text" class="form-control" name="txtmedico"  placeholder="Digite um nome">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" onclick="pesquisarNomeMedico();">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                            </span>
-                      </div>
-					</div>  
-				
-					<div class="tab">
-					  
-					  <button class="tablinks" style="background-color: #4286f4;"  onclick="pesquisarporInicial(event, 'A')">A</button>
-					  <button class="tablinks" style="background-color: #d6f710;" onclick="pesquisarporInicial(event, 'B')">B</button>
-					  <button class="tablinks" style="background-color: #8ed092;" onclick="pesquisarporInicial(event, 'C')">C</button>
-					  <button class="tablinks" style="background-color: #f24821;" onclick="pesquisarporInicial(event, 'D')">D</button>
-					  <button class="tablinks" style="background-color: #160cd6;" onclick="pesquisarporInicial(event, 'E')">E</button>
-					  <button class="tablinks" style="background-color: #ffec1e;" onclick="pesquisarporInicial(event, 'F')">F</button>
-					  <button class="tablinks" style="background-color: #ff291e;" onclick="pesquisarporInicial(event, 'G')">G</button>
-					  <button class="tablinks" style="background-color: #ff8000;" onclick="pesquisarporInicial(event, 'H')">H</button>
-					  <button class="tablinks" style="background-color: #ffbf00;" onclick="pesquisarporInicial(event, 'I')">I</button>
-					  <button class="tablinks" style="background-color: #009933;" onclick="pesquisarporInicial(event, 'J')">J</button>
-					  <button class="tablinks" style="background-color: #993366;" onclick="pesquisarporInicial(event, 'L')">L</button>
-					  <button class="tablinks" style="background-color: #0000b3;" onclick="pesquisarporInicial(event, 'M')">M</button>
-					  <button class="tablinks" style="background-color: #40ff00;" onclick="pesquisarporInicial(event, 'N')">N</button>
-					  <button class="tablinks" style="background-color: #990000;" onclick="pesquisarporInicial(event, 'O')">O</button>
-					  <button class="tablinks" style="background-color: #00ffbf;" onclick="pesquisarporInicial(event, 'P')">P</button>
-					  <button class="tablinks" style="background-color: #00bfff;" onclick="pesquisarporInicial(event, 'Q')">Q</button>
-					  <button class="tablinks" style="background-color: #0080ff;" onclick="pesquisarporInicial(event, 'R')">R</button>
-					  <button class="tablinks" style="background-color: #0040ff;" onclick="pesquisarporInicial(event, 'S')">S</button>
-					  <button class="tablinks" style="background-color: #0000ff;" onclick="pesquisarporInicial(event, 'U')">U</button>
-					  <button class="tablinks" style="background-color: #8000ff;" onclick="pesquisarporInicial(event, 'V')">V</button>
-					  <button class="tablinks" style="background-color: #bf00ff;" onclick="pesquisarporInicial(event, 'X')">X</button>
-					  <button class="tablinks" style="background-color: #ff00ff;" onclick="pesquisarporInicial(event, 'Y')">Y</button>
-					  <button class="tablinks" style="background-color: #ff00bf;" onclick="pesquisarporInicial(event, 'W')">W</button>
-					  <button class="tablinks" style="background-color: #ff0040;" onclick="pesquisarporInicial(event, 'Z')">Z</button>
-					</div>
-				</div>	
+  <!-- begin breadcrumb -->
+  <ol class="breadcrumb pull-right">
+    <li><a href="index.html">Home</a></li>
 
-				<div id="tabinicial" class="tabcontent">
-				  <h3>Agenda de medicos</h3>
-				  <p>Benvindo a agenda de medicos 1.0".</p>
-				</div>
-				<div id="tabconsulta" class="tabcontent">
-				  <h3 id ="ptitulotab">Medicos Iniciando com</h3>				 
-				   
-					<div class="panel-body">
-					   <table id="data-table" class="table table-striped table-bordered">	   
-					  
-					   </table>
-					</div>
-				</div>
-	       </div>
+    <li class="active">Agenda de médicos</li>
+  </ol>
+  <!-- end breadcrumb -->
+  <!-- begin page-header -->
+  <h1 class="page-header">Agenda de médicos <small></small></h1>
+  <!-- end page-header -->
+
+  <!-- begin row -->
+  <div class="row">
+    <!-- begin col-2 -->
+
+    <!-- end col-2 -->
+    <!-- begin col-10 -->
+    <div class="col-md-10">
+      <div class="panel panel-inverse">
+        <div class="col-xs-12 col-sm-12 col-lg-12 well">
+          <div class="col-xs-12 col-sm-4 col-lg-4 well">
+            <div class="input-group defaltspan">
+              <input id="txtmedico" type="text" class="form-control" name="txtmedico" placeholder="Digite um nome" onkeypress="validarnomes();">
+              <span class="input-group-btn">
+                                <button type="submit" class="btn btn-success" id="button1" onclick="pesquisarNomeMedico();">
+                                    <i class="glyphicon glyphicon-search"></i>
+              </button>
+            </span>
+          </div>
+          <div class="input-group defaltspan">
+            <input id="txtcdctr" type="text" class="form-control" name="txtcdctr" placeholder="Digite um código" onkeypress="validarcodigo();">
+            <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default" id="button2" onclick="pesquisarCodigoMedico();">
+                                      <i class="glyphicon glyphicon-search"></i>
+            </button>
+            </span>
+          </div>
         </div>
-        <!-- end col-10 -->
+          <div class="tab">
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'A')">A</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'B')">B</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'C')">C</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'D')">D</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'E')">E</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'F')">F</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'G')">G</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'H')">H</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'I')">I</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'J')">J</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'L')">L</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'M')">M</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'N')">N</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'O')">O</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'P')">P</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'Q')">Q</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'R')">R</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'S')">S</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'U')">U</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'V')">V</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'X')">X</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'Y')">Y</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'W')">W</button>
+            <button class="tablinks" onclick="pesquisarporInicial(event, 'Z')">Z</button>
+          </div>
+        </div>
+
+        <div id="tabinicial" class="tabcontent">
+        </div>
+        <div id="tabconsulta" class="tabcontent">
+          <h2 id="ptitulotab">Medicos Iniciando com</h2>
+
+          <div class="panel-body">
+            <table id="data-table" class="table table-striped table-bordered">
+
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- end row -->
+  </div>
+  <!-- end col-10 -->
 </div>
-<!-- end #content -->	
+<!-- end row -->
+<!-- end #content -->
 
 <!-- MODAL BOOTSTRAP 3 -->
 <div class="modal fade" id="modalconsulta" tabindex="-1" role="dialog">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3 class="modal-title glyphicon glyphicon-stethoscope">Cadastro de medicos</h3>
-			</div>
-			<div id="panel" class="panel-default">
-				<div id="panelcorpo" class="panel-body">
-					   <div class="col-xs-12 col-sm-12 col-lg-12">
-                <!-- TAMANHO DO SITE EM OUTROS DISPOSITIVOS -->
-				
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+      <div id="panel" class="panel-default">
+        <div id="panelcorpo" class="panel-body">
+          <div class="col-xs-12 col-sm-12 col-lg-12">
+            <!-- TAMANHO DO SITE EM OUTROS DISPOSITIVOS -->
 
-                <!-- INTERFACE DO XHR -->
-                <div class="defaltspan">
-                    <form>
-					    <div class="row"> 
-							<div class="col-xs-12 col-sm-2 col-lg-2"> 
-							  <div class="defaltspan form-group">
-									<label for="cdCtr">Código:</label>
-									<input type="text" id="cdCtr" class="form-control"  disabled >
-								</div>
-							</div>  
-							<div class="col-xs-12 col-sm-4 col-lg-4"> 
-							   <div class="defaltspan form-group" >
-									<label for="nmMedico">Medico:</label>
-									<input type="text" id="nmMedico" class="form-control">
-								</div>							
-							</div>
-							<div class="col-xs-12 col-sm-3 col-lg-3"> 
-								<div class="defaltspan form-group">
-									<label for="cdEspecialidade">Especialidade</label>								
-									<select class="form-control" id="cdEspecialidade">									
-										<option value=0>Esteticista</option>
-										<option value=1>Medico</option>
-										<option value=2>Nutricionista</option>
-										<option value=2>Odontologia</option>
-										<option value=4>Veterinario</option>
-										
-									</select>																
-								</div>
-						   </div>
-						   
-						   <div class="col-xs-12 col-sm-3 col-lg-3"> 
-								<div class="defaltspan form-group">
-									<label for="cdTpDoc">Tipo doc.:</label> 								
-									<select class="form-control" id="cdTpDoc">
-										<option value=0> Rg</option>
-										<option value=1> CPF</option>
-										<option value=1> CTPS</option>
+
+            <!-- INTERFACE DO XHR -->
+            <div class="defaltspan">
+              <div class="row">
+                  <div class="col-xs-12 col-sm-2 col-lg-2">
+                    <div class="defaltspan form-group">
+                      <label for="cdCtr">Código:</label>
+                      <input type="text" id="cdCtr" class="form-control" disabled>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-4 col-lg-4">
+                    <div class="defaltspan form-group">
+                      <label for="nmMedico">Medico:</label>
+                      <input type="text" id="nmMedico" class="form-control" onkeypress="validarnomes();"  required>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-3 col-lg-3">
+                    <div class="defaltspan form-group">
+                      <label for="cdEspecialidade">Especialidade:</label>
+                      <select class="form-control" id="cdEspecialidade" required>
+                    <option value="0" disabled="disabled">Selecione</option>
+										<option value="1">Esteticista</option>
+										<option value="2">Médico</option>
+										<option value="3">Nutricionista</option>
+										<option value="4">Dentista</option>
+										<option value="5">Veterinário</option>
 									</select>
-								</div>
-						   </div>
-                        </div>						   
-					    <div class="row"> 
-                           <div class="col-xs-12 col-sm-3 col-lg-3"> 					   
-							   <div class="defaltspan form-group" >
-									<label for="nrDoc">Documento:</label>
-									<input type="text" id="nrDoc" class="form-control">
-								</div>
-                            </div>
-                            <div class="col-xs-12 col-sm-3 col-lg-3">   							
-								<div class="defaltspan form-group">
-									<label for="stDoc">Situaçao Doc.:</label> 								
-									<select class="form-control" id="stDoc">
-										<option value=0> Ativo</option>
-										<option value=1> Inativo</option>
-										
+                    </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-3 col-lg-3">
+                    <div class="defaltspan form-group">
+                      <label for="cdTpDoc">Tipo doc.:</label>
+                    <select class="form-control" id="cdTpDoc" required>
+                    <option disabled="disabled">Selecione</option>
+										<option value="0"> Rg</option>
+										<option value="1"> CPF</option>
+										<option value="2"> CTPS</option>
 									</select>
-								</div> 
-							</div>	
-					 
-							<div class="col-xs-12 col-sm-3 col-lg-3">   
-								<div class="defaltspan form-group" >
-									<label for="cep">Cep:</label>
-									<input type="text" id="cep" class="form-control">
-								</div>	
-							</div>	
-							<div class="col-xs-12 col-sm-3 col-lg-3"> 	
-								 <div class="defaltspan form-group" >
-									<label for="cdCid">Cód Cidade:</label>
-									<input type="text" id="cdCid" class="form-control">
-								</div>		
-							</div>
-						 </div>	
-						 <div class="row"> 
-							<div class="col-xs-12 col-sm-3 col-lg-3">   
-								<div class="defaltspan form-group">
-									<label for="ufDoc">Uf Doc:</label> 								
-									<select class="form-control" id="ufDoc">
-										<option value="">Selecionex</option>
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="nrDoc">Documento:</label>
+                    <input type="number" id="nrDoc" class="form-control" onkeypress="validarcodigo();" required>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="stDoc">St. Doc.:</label>
+                    <select class="form-control" id="stDoc" required>
+										<option disabled="disabled">Selecione</option>
+                    <option value="0">Ativo</option>
+										<option value="1">Inativo</option>
+
+									</select>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="cep">Cep:</label>
+                    <input type="number" id="cep" class="form-control" onkeypress="validarcodigo();" required>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="cdCid">Cód Cidade:</label>
+                    <input type="number" id="cdCid" class="form-control" onkeypress="validarcodigo();" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="ufDoc">Uf Doc:</label>
+                    <select class="form-control" id="ufDoc" required>
+										<option value="" disabled="disabled">Selecione</option>
 										<option value="AC">AC</option>
 										<option value="AL">AL</option>
 										<option value="AM">AM</option>
@@ -283,184 +280,170 @@
 										<option value="SC">SC</option>
 										<option value="SE">SE</option>
 										<option value="SP">SP</option>
-										<option value="TO">TO</option>									
+										<option value="TO">TO</option>
 									</select>
-								</div>	
-							</div>	
-						
-                        					
-							<div class="col-xs-12 col-sm-3 col-lg-3">   
-								<div class="defaltspan form-group" >
-									<label for="endereco">Endereco:</label>
-									<input type="text" id="endereco" class="form-control">
-								</div>
-							 </div>	
-							<div class="col-xs-12 col-sm-3 col-lg-3">   	
-								<div class="defaltspan form-group" >
-									<label for="bairro">Bairro:</label>
-									<input type="text" id="bairro" class="form-control">
-								</div>
-							</div>	
-							<div class="col-xs-12 col-sm-3 col-lg-3">   
-								<div class="defaltspan form-group" >
-									<label for="telefone">Telefone:</label>
-									<input type="text" id="telefone" class="form-control">
-								</div>								
-                            </div>
-						</div>	
-						<div class="row"> 
+                  </div>
+                </div>
 
-                            <div class="col-xs-12 col-sm-3 col-lg-3">   
-								<div class="defaltspan form-group" >
-									<label for="fax">Fax:</label>
-									<input type="text" id="fax" class="form-control">
-								</div>
-							</div>								
-						  
-							<div class="col-xs-12 col-sm-3 col-lg-3">  	
-								<div class="defaltspan form-group" >
-									<label for="email">Email:</label>
-									<input type="text" id="email" class="form-control">
-								</div>
-							</div>	
-							<div class="col-xs-12 col-sm-3 col-lg-3">  
-								<div class="defaltspan form-group" >
-									<label for="dt_nasc">Dt.Nac:</label>
-									<input type="text" data-date-format="DD-MM-YYYY" id="dt_nasc" class="form-control">
-								</div>								
-                            </div>
-							<div class="col-xs-12 col-sm-3 col-lg-3">  
-								<div class="defaltspan form-group" >
-									<label for="dt_formatura">Dt.Fomatura:</label>
-									<input type="text" data-date-format="DD-MM-YYYY" id="dt_formatura" class="form-control">
-								</div>								
-                            </div>
-							
-                          </div> 
-                          <div class="row">						  
-							  <div class="col-xs-12 col-sm-3 col-lg-3">  
-								<div class="defaltspan form-group" >
-									<label for="cpf">Cpf:</label>
-									<input type="text" id="cpf" class="form-control">
-								</div>								
-                             </div> 
-                             <div class="col-xs-12 col-sm-3 col-lg-3">  
-								<div class="defaltspan form-group" >
-									<label for="rg">Rg:</label>
-									<input type="text" id="rg" class="form-control">
-								</div>								
-                             </div>  
-                             <div class="col-xs-12 col-sm-3 col-lg-3">  
-								<div class="defaltspan form-group" >
-									<label for="cd_instituicao">Cód Instituição:</label>
-									<input type="text" id="cd_instituicao" class="form-control">
-								</div>								
-                             </div>  
-                             <div class="col-xs-12 col-sm-3 col-lg-3">  
-								<div class="defaltspan form-group" >
-									<label for="ponto_ref">Ponto refencia:</label>
-									<input type="text" id="ponto_ref" class="form-control">
-								</div>								
-                             </div>       							 
-                           							
-						  </div>
-                          <div class="row">	
-						     <div class="col-xs-12 col-sm-3 col-lg-3">  
-								<div class="defaltspan form-group" >
-									<label for="complemento">Complemento:</label>
-									<input type="text" id="complemento" class="form-control">
-								</div>								
-                             </div> 
-                             <div class="col-xs-12 col-sm-3 col-lg-3">  
-								<div class="defaltspan form-group" >
-									<label for="nr_end">Numero End:</label>
-									<input type="text" id="nr_end" class="form-control">
-								</div>								
-                             </div> 
-                             <div class="col-xs-12 col-sm-3 col-lg-3">  
-								<div class="defaltspan form-group" >
-									<label for="cd_cid_logra">Cód Logradouro:</label>
-									<input type="text" id="cd_cid_logra" class="form-control">
-								</div>								
-                             </div>
-                             <div class="col-xs-12 col-sm-3 col-lg-3">  
-								<div class="defaltspan form-group" >
-									<label for="dt_cad">Dt.cad:</label>
-									<input type="text"   id="dt_cad" class="form-control">
-								</div>								
-                             </div> 	  							 
-						  </div>
-					 </div>	                        
-                    </form>
+
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" id="endereco" class="form-control" required>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="bairro">Bairro:</label>
+                    <input type="text" id="bairro" class="form-control" onkeypress="validarnomes();" required>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="number" id="telefone" class="form-control" onkeypress="validarcodigo();" required>
+                  </div>
                 </div>
               </div>
-			
-			</div>
-			<div class="modal-footer">
-			    <div align="center" class="well">
-				<button type="button" class="btn btn-success" onclick="atualizarMedico()"  >Salvar</button> 
-				
-				<button type="button" class="btn btn-default"  data-dismiss="modal">Fechar</button>
-				</div>	
-			</div>
-		</div>
-	</div>
+              <div class="row">
+
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="fax">Fax:</label>
+                    <input type="number" id="fax" class="form-control" onkeypress="validarcodigo();" required>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" class="form-control" required>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="dt_nasc">Data de Nascimento:</label>
+                    <input type="date" id="dt_nasc" class="form-control" required>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="dt_formatura">Data de Formatura:</label>
+                    <input type="date" id="dt_formatura" class="form-control" required>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="cpf">CPF:</label>
+                    <input type="number" id="cpf" class="form-control" onkeypress="validarcodigo();" required>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="rg">RG:</label>
+                    <input type="number" id="rg" class="form-control" onkeypress="validarcodigo();" required>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="cd_instituicao">Cod. Instituição</label>
+                    <input type="number" id="cd_instituicao" class="form-control" onkeypress="validarcodigo();" required>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="ponto_ref">Ponto Referência:</label>
+                    <input type="text" id="ponto_ref" class="form-control" onkeypress="validarnomes();" required>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="complemento">Complemento:</label>
+                    <input type="text" id="complemento" class="form-control" onkeypress="validarcodigo();" required>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="nr_end">Num. Endereço:</label>
+                    <input type="text" id="nr_end" class="form-control" onkeypress="validarcodigo();" required>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="cd_cid_logra">Cód. Logradouro:</label>
+                    <input type="text" id="cd_cid_logra" class="form-control" onkeypress="validarcodigo();" required>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-lg-3">
+                  <div class="defaltspan form-group">
+                    <label for="dt_cad">Data Cad.:</label>
+                    <input type="date" id="dt_cad" class="form-control" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div align="center" class="well">
+          <button type="submit" class="btn btn-success" onclick="atualizarMedico();">Salvar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-	
-		
-
-<script>
-
-
-</script>
-
-
-     
 </body>
 <script src="assets/plugins/sweetalert/sweetalert2.min.js"></script>
 <script src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 <script>
-    App.restartGlobalFunction();
-    App.setPageTitle('Paulo Cezar | Agenda contatos ');
-    $.getScript('assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js').done(function() { 
-	  $.getScript('assets/plugins/DataTables/media/js/jquery.dataTables.js').done(function() {
-        $.getScript('assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js').done(function() {
-            $.getScript('assets/plugins/DataTables/extensions/Buttons/js/dataTables.buttons.min.js').done(function() {
-                $.getScript('assets/plugins/DataTables/extensions/Buttons/js/buttons.bootstrap.min.js').done(function() {
-                    $.getScript('assets/plugins/DataTables/extensions/Buttons/js/buttons.flash.min.js').done(function() {
-                        $.getScript('assets/plugins/DataTables/extensions/Buttons/js/jszip.min.js').done(function() {
-                            $.getScript('assets/plugins/DataTables/extensions/Buttons/js/pdfmake.min.js').done(function() {
-                                $.getScript('assets/plugins/DataTables/extensions/Buttons/js/vfs_fonts.min.js').done(function() {
-                                    $.getScript('assets/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js').done(function() {
-                                        $.getScript('assets/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js').done(function() {
-                                            $.getScript('assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js').done(function() {
-                                                $.getScript('assets/plugins/DataTables/extensions/AutoFill/js/dataTables.autoFill.min.js').done(function() {
-                                                    $.getScript('assets/plugins/DataTables/extensions/ColReorder/js/dataTables.colReorder.min.js').done(function() {
-                                                        $.getScript('assets/plugins/DataTables/extensions/KeyTable/js/dataTables.keyTable.min.js').done(function() {
-                                                            $.getScript('assets/plugins/DataTables/extensions/RowReorder/js/dataTables.rowReorder.min.js').done(function() {
-                                                                $.getScript('assets/plugins/DataTables/extensions/Select/js/dataTables.select.min.js').done(function() {
-                                                                    $.getScript('assets/js/agendacontatos.js').done(function() {
-                                                                        TableManageCombine.init();
-                                                                    });
-                                                                });
-			                                                });
-			                                            });
-			                                        });
-			                                    });
-			                                });
-			                            });
-			                        });
-			                    });
-			                });
-			            });
+  App.restartGlobalFunction();
+  App.setPageTitle('Agenda');
+  $.getScript('assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js').done(function() {
+    $.getScript('assets/plugins/DataTables/media/js/jquery.dataTables.js').done(function() {
+      $.getScript('assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js').done(function() {
+        $.getScript('assets/plugins/DataTables/extensions/Buttons/js/dataTables.buttons.min.js').done(function() {
+          $.getScript('assets/plugins/DataTables/extensions/Buttons/js/buttons.bootstrap.min.js').done(function() {
+            $.getScript('assets/plugins/DataTables/extensions/Buttons/js/buttons.flash.min.js').done(function() {
+              $.getScript('assets/plugins/DataTables/extensions/Buttons/js/jszip.min.js').done(function() {
+                $.getScript('assets/plugins/DataTables/extensions/Buttons/js/pdfmake.min.js').done(function() {
+                  $.getScript('assets/plugins/DataTables/extensions/Buttons/js/vfs_fonts.min.js').done(function() {
+                    $.getScript('assets/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js').done(function() {
+                      $.getScript('assets/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js').done(function() {
+                        $.getScript('assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js').done(function() {
+                          $.getScript('assets/plugins/DataTables/extensions/AutoFill/js/dataTables.autoFill.min.js').done(function() {
+                            $.getScript('assets/plugins/DataTables/extensions/ColReorder/js/dataTables.colReorder.min.js').done(function() {
+                              $.getScript('assets/plugins/DataTables/extensions/KeyTable/js/dataTables.keyTable.min.js').done(function() {
+                                $.getScript('assets/plugins/DataTables/extensions/RowReorder/js/dataTables.rowReorder.min.js').done(function() {
+                                  $.getScript('assets/plugins/DataTables/extensions/Select/js/dataTables.select.min.js').done(function() {
+                                    $.getScript('assets/js/agendacontatos.js').done(function() {
+                                        TableManageCombine.init();
+                                      });
+                                    });
+                                  });
+                                });
+                              });
+                            });
+                          });
+                        });
+                      });
                     });
+                  });
                 });
+              });
             });
+          });
         });
+      });
     });
-  });	
-	
-	 
 </script>
 <!-- ================== END PAGE LEVEL JS ================== -->
-</html> 
+
+</html>
