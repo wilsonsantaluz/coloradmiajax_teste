@@ -154,19 +154,11 @@ function atualizarMedicoServer() {
   var dtCad = toDate(document.getElementById("dt_cad").value);
   var params = "obj=" + JSON.stringify(dados);
 
-  /*if (nmMedico == "") {
+  if (nmMedico == "") {
     swal({
       type: 'error',
       title: 'ERRO',
       text: 'DIGITE O NOME DO MÉDICO'
-    });
-  }
-
-  if (cdCid == "") {
-    swal({
-      type: 'error',
-      title: 'ERRO',
-      text: 'DIGITE O CÓDIGO DA CIDADE'
     });
   }
 
@@ -194,30 +186,6 @@ function atualizarMedicoServer() {
     });
   }
 
-  if (rg == "") {
-    swal({
-      type: 'error',
-      title: 'ERRO',
-      text: 'DIGITE O RG'
-    });
-  }
-
-  if (cpf == "") {
-    swal({
-      type: 'error',
-      title: 'ERRO',
-      text: 'DIGITE O CPF'
-    });
-  }
-
-  if (cep == "") {
-    swal({
-      type: 'error',
-      title: 'ERRO',
-      text: 'DIGITE O CPF'
-    });
-  }
-
   var select = document.getElementById('cdEspecialidade');
   if (select.value != 0) {
     return true;
@@ -230,7 +198,7 @@ function atualizarMedicoServer() {
   }
 
   var select2 = document.getElementById('ufDoc');
-  if (select2.value != 0) {
+  if (select.value != 0) {
     return true;
   } else {
     swal({
@@ -239,29 +207,6 @@ function atualizarMedicoServer() {
       text: 'SELECIONE UMA UF'
     });
   }
-
-  var select3 = document.getElementById('stDoc');
-  if (select2.value != 0) {
-    return true;
-  } else {
-    swal({
-      type: 'error',
-      title: 'ERRO',
-      text: 'SELECIONE O DOCUMENTO ESTÁ ATIVO OU INATIVO'
-    });
-  }
-
-  var select4 = document.getElementById('tpDoc');
-  if (select4.value != 0) {
-    return true;
-  } else {
-    swal({
-      type: 'error',
-      title: 'ERRO',
-      text: 'SELECIONE O TIPO DE DOCUMENTO'
-    });
-  }*/
-
 
   //MONTAR O json
   var myObj = {};
@@ -319,7 +264,7 @@ function atualizarMedicoServer() {
           swal({
             type: 'success',
             title: 'SUCESSO',
-            text: 'DADOS FORAM ATUALIZADOS',
+            text: 'DADOS FORAM ATUALIZADOS/CADASTRADOS',
           });
 
         } else {
@@ -327,7 +272,7 @@ function atualizarMedicoServer() {
           swal({
             type: 'error',
             title: 'ERROR',
-            text: 'OS DADOS NÃO FORAM ALTERADOS',
+            text: 'OS DADOS NÃO FORAM ALTERADOS/CADASTRADOS',
           });
 
         }
