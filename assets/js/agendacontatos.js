@@ -158,50 +158,45 @@ function atualizarMedicoServer() {
     swal({
       type: 'error',
       title: 'ERRO',
-      text: 'DIGITE O NOME DO MÉDICO'
+      text: 'INSIRA O NOME DO MEDICO'
     });
+    e.preventDefault();
+  }
+
+  var select = document.getElementById("cdEspecialidade");
+  if (select.value == 0) {
+    swal({
+      type: 'error',
+      title: 'ERRO',
+      text: 'INSIRA UMA ESPECIALIDADE'
+    });
+    e.preventDefault();
   }
 
   if (dtCad == "") {
     swal({
       type: 'error',
       title: 'ERRO',
-      text: 'DIGITE A DATA DO CADASTRO'
+      text: 'INSIRA A DATA DO CADASTRO'
     });
+    e.preventDefault();
   }
 
   if (dtFormatura == "") {
     swal({
       type: 'error',
       title: 'ERRO',
-      text: 'DIGITE A DATA DA FORMATURA'
+      text: 'INSIRA A DATA DA FORMATURA'
     });
+    e.preventDefault();
   }
 
-  if (dtCad == "") {
+  if (dtNasc == "") {
     swal({
       type: 'error',
-      title: 'ERRO',
-      text: 'DIGITE A DATA DO CADASTRO'
+      text: 'INSIRA A DATA DO NASCIMENTO'
     });
-  }
-
-  var select = document.getElementById('cdEspecialidade');
-  if (select.value == 0) {
-    swal({
-      type: 'error',
-      title: 'ERRO',
-      text: 'SELECIONE UMA ESPECIALIDADE'
-    });
-  }
-
-  var select2 = document.getElementById('ufDoc');
-  if (select2.value == 0) {
-    swal({
-      type: 'error',
-      title: 'ERRO',
-      text: 'SELECIONE UMA UF'
-    });
+    e.preventDefault();
   }
 
   //MONTAR O json
@@ -306,12 +301,12 @@ function atualizarMedicoServer() {
   //SE INSERINDO O CODIGO E VAZIO
   if (cdCtr == '0') {
     xhr.open("POST", url, true); //ABRIR A CONEXAO COM O
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   } else {
-   xhr.open("PUT", url, true); //ABRIR A CONEXAO COM O
+    xhr.open("PUT", url, true); //ABRIR A CONEXAO COM O
   }
-   xhr.send(params); //PASSAR O JASOM PARA O SERVIDOR
-  }
+  xhr.send(params); //PASSAR O JASOM PARA O SERVIDOR
+}
 
 function ExcluirMedicoServer(codigo) {
   var dados = {
@@ -581,7 +576,6 @@ function validarnomes(evt) {
 function cadastrarnovo() {
   $("#modalconsulta").modal();
   limparModal();
-
 }
 
 function editarmedico(codigo) {
@@ -608,9 +602,7 @@ function pesquisarporInicial(event, letra) {
   document.getElementById('tabconsulta').style.display = "block";
 
   document.getElementById('ptitulotab').innerText = "Medicos iniciando com " + letra;
-  if (event) {
-    event += "active";
-  }
+  event += "active";
   // HTML events are "things" that happen to HTML elements.
   // When JavaScript is used in HTML pages, JavaScript can "react" on these events.
 }
@@ -792,6 +784,7 @@ var handleDataTableCombinationSetting = function () {
     $('#data-table tbody').on('click', '#btexcluir', function () {
       var data = tabelamedicos.row($(this).parents('tr')).data();
       excluirmedico(data[0]);
+      fechar();
     });
   }
 
@@ -910,4 +903,9 @@ function beep(duration, frequency, volume, type, callback) {
   setTimeout(function () {
     oscillator.stop();
   }, (duration ? duration : 500));
+}
+
+function fechar() {
+  tabelamedicos.clear();
+  pesquisarporInicial(glbevt, glbletra);
 }
